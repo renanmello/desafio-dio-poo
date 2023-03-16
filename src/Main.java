@@ -9,20 +9,13 @@ public class Main {
     public static void main(String[] args) {
 
         //criando curso 1
-        Curso curso1 = new Curso();
-        curso1.setTitulo("java");
-        curso1.setDescricao("Curso java 11");
-        curso1.setCargaHoraria(8);
+        Curso curso1 = new Curso("Java","Curso java 11",8);
+
         //criando curso 2
-        Curso curso2 = new Curso();
-        curso2.setTitulo("python");
-        curso2.setDescricao("Curso Python");
-        curso2.setCargaHoraria(4);
+        Curso curso2 = new Curso("python","Curso Python",4);
+
         //criando mentoria
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("Java");
-        mentoria.setDescricao("mentoria de java");
-        mentoria.setData(LocalDate.now());
+        Mentoria mentoria = new Mentoria("Java","mentoria de java",LocalDate.now());
 
         //testes
         //System.out.println(curso1);
@@ -30,32 +23,37 @@ public class Main {
         //System.out.println(mentoria);
 
         //criando bootcamp
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java + Python");
-        bootcamp.setDescricao(" bootcamp POO");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        Bootcamp bootcamp = new Bootcamp("Bootcamp Java + Python"," bootcamp POO");
+
+        bootcamp.addCurso(curso1);
+        bootcamp.addCurso(curso2);
+        bootcamp.addCurso(mentoria);
 
         //criando os devs
-        Dev devrenan = new Dev();
-        devrenan.setNome("renan");
+        Dev devrenan = new Dev("renan");
         devrenan.inscreverBootcamp(bootcamp);
 
-        System.out.println("Conteudos inscritos renan: "+devrenan.getConteudosInscritos());
-        System.out.println("Conteudos concluidos renan: "+devrenan.getConteudosConcluidos());
-        System.out.println("XP: "+ devrenan.calcularXp());
+        imprimir(devrenan);
 
-        Dev devcami = new Dev();
-        devcami.setNome("camila");
+        Dev devcami = new Dev("camila");
         devcami.inscreverBootcamp(bootcamp);
 
         //testando os resultados
-        System.out.println("Conteudos inscritos camila: "+devcami.getConteudosInscritos());
-        System.out.println("Conteudos concluidos camila: "+devcami.getConteudosConcluidos());
+        imprimir(devcami);
         devcami.progredir();
+        imprimir(devcami);
         devcami.progredir();
-        System.out.println("XP: "+ devcami.calcularXp());
+
+
+    }
+
+    static void imprimir(Dev dev){
+
+        System.out.println("Nome: "+dev.getNome());
+        System.out.println("Conteudos inscritos : "+dev.getConteudosInscritos());
+        System.out.println("Conteudos concluidos: "+dev.getConteudosConcluidos());
+        System.out.println("XP: "+ dev.calcularXp());
+
 
     }
 }

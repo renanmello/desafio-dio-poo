@@ -3,7 +3,10 @@ package br.dio.desafio.dominio;
 public class Curso extends Conteudo{
 
 
-    public Curso() {
+    public Curso(String nome, String descricao, int cargaHoraria) {
+        this.setTitulo(nome);
+        this.setDescricao(descricao);
+        this.cargaHoraria = cargaHoraria;
 
     }
 
